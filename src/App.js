@@ -1,5 +1,8 @@
 import { Text, View } from 'react-native'
 import React from 'react'
+import { NativeModules } from 'react-native';
+
+console.log(NativeModules);
 
 const App = () => {
   return (
