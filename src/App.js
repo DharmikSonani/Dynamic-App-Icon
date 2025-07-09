@@ -4,8 +4,8 @@ import { useDefaultIcon, useIconB, useIconC } from './hooks/useAppIcons'
 
 const App = () => {
 
-  useDefaultIcon();
-  // useIconB();
+  // useDefaultIcon();
+  useIconB();
   // useIconC();
 
   return (

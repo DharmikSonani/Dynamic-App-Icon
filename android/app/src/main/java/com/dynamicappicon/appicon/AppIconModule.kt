@@ -31,7 +31,7 @@ class AppIconModule(
 
         val activityName = activity.componentName.className
         if (activityName.endsWith("MainActivity")) {
-            promise.resolve("Default")
+            promise.resolve("default")
         } else if (activityName.contains("MainActivity")) {
             val suffix = activityName.substringAfter("MainActivity")
             promise.resolve(suffix)

@@ -6,7 +6,7 @@ export const getAppIcon = async () => { return await AppIconModule?.getAppIcon()
 const handleIconChange = async (icon) => {
     try {
         const currentIcon = await getAppIcon();
-        if (currentIcon !== icon) await AppIconModule?.changeAppIcon(icon);
+        if (currentIcon?.toLowerCase() !== icon?.toLowerCase()) await AppIconModule?.changeAppIcon(icon);
     } catch (error) {
         console.log(error);
     }
