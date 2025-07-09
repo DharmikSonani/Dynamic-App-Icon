@@ -1,10 +1,14 @@
 import { Text, View } from 'react-native'
 import React from 'react'
-import { NativeModules } from 'react-native';
-
-console.log(NativeModules);
+import { useDefaultIcon, useIconA, useIconB, useIconC } from './hooks/useAppIcons'
 
 const App = () => {
+
+  // useDefaultIcon();
+  // useIconA();
+  // useIconB();
+  // useIconC();
+
   return (
     <View style={{
       flex: 1,
