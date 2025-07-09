@@ -58,16 +58,19 @@ class AppIconModule(
         val newAlias = "$packageName.MainActivity$aliasSuffix"
 
         if (currentClass == newAlias) {
+            switchScheduled = false;
             promise.reject("ANDROID:ICON_ALREADY_USED", "Already using this icon.")
             return
+        }
+
+        if(pendingAlias == null){
+            // Register lifecycle callback once
+            activity.application.registerActivityLifecycleCallbacks(this)
         }
 
         pendingAlias = newAlias
         currentAlias = currentClass
         switchScheduled = true
-
-        // Register lifecycle callback once
-        activity.application.registerActivityLifecycleCallbacks(this)
 
         showIconChangeAlert(activity, newAlias);
         promise.resolve("Successfully change to => newAlias => $newAlias, currentClass => $currentClass");
