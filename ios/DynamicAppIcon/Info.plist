@@ -79,15 +79,6 @@
 		</dict>
 		<key>CFBundleAlternateIcons</key>
 		<dict>
-			<key>IconA</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>IconA</string>
-				</array>
-				<key>UIPrerenderedIcon</key>
-				<false/>
-			</dict>
 			<key>IconB</key>
 			<dict>
 				<key>CFBundleIconFiles</key>

@@ -1,12 +1,11 @@
 import { Text, View } from 'react-native'
 import React from 'react'
-import { useDefaultIcon, useIconA, useIconB, useIconC } from './hooks/useAppIcons'
+import { useDefaultIcon, useIconB, useIconC } from './hooks/useAppIcons'
 
 const App = () => {
 
   // useDefaultIcon();
-  // useIconA();
-  // useIconB();
+  useIconB();
   // useIconC();
 
   return (

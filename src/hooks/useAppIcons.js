@@ -13,6 +13,5 @@ const handleIconChange = async (icon) => {
 }
 
 export const useDefaultIcon = () => handleIconChange('default');
-export const useIconA = () => handleIconChange('IconA');
 export const useIconB = () => handleIconChange('IconB');
 export const useIconC = () => handleIconChange('IconC');
