@@ -33,7 +33,7 @@ class AppIconModule(
             return
         }
 
-        val activityName = pendingAlias ?: activity.componentName.className
+        val activityName = activity.componentName.className
         if (activityName.endsWith("MainActivity")) {
             promise.resolve("default")
         } else if (activityName.contains("MainActivity")) {
@@ -53,7 +53,7 @@ class AppIconModule(
         }
 
         val pm = activity.packageManager
-        val currentClass = pendingAlias ?: activity.componentName.className
+        val currentClass = activity.componentName.className
         val aliasSuffix = if (iconName.isNullOrEmpty() || iconName.equals("Default", true)) "Default" else iconName
         val newAlias = "$packageName.MainActivity$aliasSuffix"
 
