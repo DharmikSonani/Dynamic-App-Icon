@@ -1,5 +1,6 @@
 package com.dynamicappicon.appicon
 
+import com.dynamicappicon.R
 import android.app.Activity
 import android.app.Application
 import android.content.ComponentName
@@ -8,6 +9,9 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import com.facebook.react.bridge.*
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 
 class AppIconModule(
     reactContext: ReactApplicationContext
@@ -65,7 +69,8 @@ class AppIconModule(
         // Register lifecycle callback once
         activity.application.registerActivityLifecycleCallbacks(this)
 
-        promise.resolve(packageName)
+        showIconChangeAlert(activity, newAlias);
+        promise.resolve("Successfully change to => $newAlias");
     }
 
     private fun performIconSwitch() {
@@ -106,6 +111,43 @@ class AppIconModule(
             Log.e("AppIconModule", "Error performing icon switch", e)
         }
     }
+
+    private fun showIconChangeAlert(activity: Activity, aliasClassName: String) {
+        try {
+            // Inflate layout
+            val dialogView = activity.layoutInflater.inflate(R.layout.icon_changed_dialog, null)
+
+            // Find views
+            val iconImage = dialogView.findViewById<ImageView>(R.id.iconImage)
+            val iconText = dialogView.findViewById<TextView>(R.id.iconText)
+
+            val resolveInfo = activity.packageManager.queryIntentActivities(
+                Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER).setPackage(packageName),
+                PackageManager.MATCH_DISABLED_COMPONENTS
+            ).find {
+                it.activityInfo.name == aliasClassName
+            }
+
+            val iconDrawable = resolveInfo?.activityInfo?.loadIcon(activity.packageManager)
+            iconDrawable?.let { iconImage.setImageDrawable(it) }
+
+            // Set app name
+            val appName = activity.applicationInfo.loadLabel(activity.packageManager).toString()
+            iconText.text = "You have changed the icon for $appName"
+
+            // Show alert
+            activity.runOnUiThread {
+                AlertDialog.Builder(activity)
+                    .setView(dialogView)
+                    .setCancelable(false)
+                    .setPositiveButton("OK", null)
+                    .show()
+            }
+        } catch (e: Exception) {
+            Log.e("AppIconDialog", "Failed to show alert dialog", e)
+        }
+    }
+
 
     // Trigger icon change when app stops (goes to background)
     override fun onActivityStopped(activity: Activity) {
