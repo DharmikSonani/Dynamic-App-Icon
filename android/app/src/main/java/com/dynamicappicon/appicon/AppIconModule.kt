@@ -15,9 +15,9 @@ class AppIconModule(
 
     private val context = reactContext
     private val packageName = context.packageName
-    private var componentClass: String = ""
-    private val classesToKill = mutableSetOf<String>()
-    private var iconChanged = false
+    private var currentAlias: String? = null
+    private var pendingAlias: String? = null
+    private var switchScheduled = false
 
     override fun getName(): String = "AppIconModule"
 
@@ -50,91 +50,76 @@ class AppIconModule(
 
         val pm = activity.packageManager
         val currentClass = activity.componentName.className
-        val baseAlias = if (iconName.isNullOrEmpty() || iconName.equals("Default", true)) "MainActivityDefault"
-                        else "MainActivity$iconName"
-        var newAliasClass: String? = null
+        val aliasSuffix = if (iconName.isNullOrEmpty() || iconName.equals("Default", true)) "Default" else iconName
+        val newAlias = "$packageName.MainActivity$aliasSuffix"
+
+        if (currentClass == newAlias) {
+            promise.reject("ANDROID:ICON_ALREADY_USED", "Already using this icon.")
+            return
+        }
+
+        pendingAlias = newAlias
+        currentAlias = currentClass
+        switchScheduled = true
+
+        // Register lifecycle callback once
+        activity.application.registerActivityLifecycleCallbacks(this)
+
+        promise.resolve(packageName)
+    }
+
+    private fun performIconSwitch() {
+        if (!switchScheduled || pendingAlias == null || currentAlias == null) return
 
         try {
-            val resolveInfos = pm.queryIntentActivities(
-                Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER).setPackage(packageName),
-                PackageManager.MATCH_DISABLED_COMPONENTS
-            )
+            val pm = context.packageManager
 
-            for (info in resolveInfos) {
-                val className = info.activityInfo.name
-                if (className.endsWith(baseAlias)) {
-                    newAliasClass = className
-                    break
-                }
-            }
-
-            if (newAliasClass == null) {
-                promise.reject("ANDROID:ICON_ALIAS_NOT_FOUND", "Alias not found for $baseAlias")
-                return
-            }
-
-            if (currentClass == newAliasClass) {
-                promise.reject("ANDROID:ICON_ALREADY_USED", "Already using this icon.")
-                return
-            }
-
-            // Enable new
+            // Enable new alias
             pm.setComponentEnabledSetting(
-                ComponentName(packageName, newAliasClass),
+                ComponentName(packageName, pendingAlias!!),
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                 PackageManager.DONT_KILL_APP
             )
 
-            // Disable old
+            // Disable old alias
             pm.setComponentEnabledSetting(
-                ComponentName(packageName, currentClass),
+                ComponentName(packageName, currentAlias!!),
                 PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
                 PackageManager.DONT_KILL_APP
             )
 
-            // Relaunch app with new icon alias
+            // Relaunch app with new alias
             val intent = Intent(Intent.ACTION_MAIN).apply {
                 addCategory(Intent.CATEGORY_LAUNCHER)
-                component = ComponentName(packageName, newAliasClass!!)
+                component = ComponentName(packageName, pendingAlias!!)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
 
             context.startActivity(intent)
-            activity.finish()
 
-            promise.resolve(baseAlias.removePrefix("MainActivity"))
+            // Reset state
+            switchScheduled = false
+            currentAlias = null
+            pendingAlias = null
 
         } catch (e: Exception) {
-            Log.e("changeAppIcon", "Error switching icon", e)
-            promise.reject("ANDROID:ICON_CHANGE_FAILED", e)
+            Log.e("AppIconModule", "Error performing icon switch", e)
         }
     }
 
-
-    private fun completeIconChange() {
-        if (!iconChanged) return
-
-        val activity = currentActivity ?: return
-        val pm = activity.packageManager
-
-        classesToKill.remove(componentClass)
-        for (cls in classesToKill) {
-            pm.setComponentEnabledSetting(
-                ComponentName(packageName, cls),
-                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-                PackageManager.DONT_KILL_APP
-            )
+    // Trigger icon change when app stops (goes to background)
+    override fun onActivityStopped(activity: Activity) {
+        if (switchScheduled) {
+            performIconSwitch()
+            activity.application.unregisterActivityLifecycleCallbacks(this)
         }
-
-        classesToKill.clear()
-        iconChanged = false
     }
 
+    // Required empty implementations
     override fun onActivityDestroyed(activity: Activity) {}
     override fun onActivityPaused(activity: Activity) {}
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {}
     override fun onActivityStarted(activity: Activity) {}
     override fun onActivityResumed(activity: Activity) {}
-    override fun onActivityStopped(activity: Activity) { completeIconChange() }
     override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
 }
