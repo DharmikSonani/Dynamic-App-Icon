@@ -7,7 +7,7 @@ This section explains the setup and implementation for Dynamic App Icon (React N
 This section explains how to set up the `AppIconModule` for changing app icon dynamically on Android application.
 
 ### 1. Create Alert Layout
-#### **File:** [`android/app/src/main/res/layout/icon_changed_dialog.xml`]()
+#### **File:** [`android/app/src/main/res/layout/icon_changed_dialog.xml`](https://github.com/DharmikSonani/Dynamic-App-Icon/blob/main/android/app/src/main/res/layout/icon_changed_dialog.xml)
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -41,7 +41,7 @@ This section explains how to set up the `AppIconModule` for changing app icon dy
 ```
 
 ### 2. Create the Native Module
-#### **File:** [`android/app/src/main/java/com/<package-name>/appicon/AppIconModule.kt`]()
+#### **File:** [`android/app/src/main/java/com/<package-name>/appicon/AppIconModule.kt`](https://github.com/DharmikSonani/Dynamic-App-Icon/blob/main/android/app/src/main/java/com/dynamicappicon/appicon/AppIconModule.kt)
 
 ```kotlin
 package com.<package-name>.appicon
@@ -217,7 +217,7 @@ class AppIconModule(
 ```
 
 ### 3. Create the React Package
-#### **File:** [`android/app/src/main/java/com/<package-name>/appicon/AppIconPackage.kt`]()
+#### **File:** [`android/app/src/main/java/com/<package-name>/appicon/AppIconPackage.kt`](https://github.com/DharmikSonani/Dynamic-App-Icon/blob/main/android/app/src/main/java/com/dynamicappicon/appicon/AppIconPackage.kt)
 
 ```kotlin
 package com.<package-name>.appicon
@@ -239,7 +239,7 @@ class AppIconPackage : ReactPackage {
 ```
 
 ### 4. Register the Package in `MainApplication.kt`
-#### **File:** [`android/app/src/main/java/com/<package-name>/MainApplication.kt`]()
+#### **File:** [`android/app/src/main/java/com/<package-name>/MainApplication.kt`](https://github.com/DharmikSonani/Dynamic-App-Icon/blob/main/android/app/src/main/java/com/dynamicappicon/MainApplication.kt)
 
 Modify the `MainApplication.kt` file to include the `AudioDevicePackage`.
 
@@ -275,7 +275,7 @@ This section explains how to set up the `AppIconModule` for changing app icon dy
 - **Note** : Create all Required files from **xCode**.
 
 ### 1. Create AppIconModule.swift (Swift)
-#### **File:** [`ios/AppIconModule.swift`]()
+#### **File:** [`ios/AppIconModule.swift`](https://github.com/DharmikSonani/Dynamic-App-Icon/blob/main/ios/AppIconModule.swift)
 
 ```swift
 import Foundation
@@ -328,14 +328,14 @@ class AppIconModule: NSObject, RCTBridgeModule{
 ```
 
 ### 2. Create the Bridging Header
-#### **File:** [`iios/<YourApplicationName>-Bridging-Header.h`]()
+#### **File:** [`ios/<YourApplicationName>-Bridging-Header.h`](https://github.com/DharmikSonani/Dynamic-App-Icon/blob/main/ios/DynamicAppIcon-Bridging-Header.h)
 ```objc
 #import "React/RCTBridgeModule.h"
 #import "React/RCTEventEmitter.h"
 ```
 
 ### 3. Create AppIconModule.m (Objective-C)
-#### **File:** [`ios/AppIconModule.m`]()
+#### **File:** [`ios/AppIconModule.m`](https://github.com/DharmikSonani/Dynamic-App-Icon/blob/main/ios/AppIconModule.m)
 
 ```objc
 #import <Foundation/Foundation.h>
@@ -367,12 +367,12 @@ npm run ios
 #### **Generate Icon:**
 Use a service such as https://www.appicon.co in order to generate the platform specific icon files.
 #### **Add Icon:**
-
+![Add Android Icons](../../../guide-assets/Add-Android-Icon.png)
 
 ### 2. Modify Menifest File
-#### **File:** [`android/app/src/main/AndroidManifest.xml`]()
-- Remove ***<intent-filter>...</intent-filter>*** from ***<activity>...</activity>***
-- Add ***<activity-alias>...</activity-alias>*** for each icon (Including default app icon)
+#### **File:** [`android/app/src/main/AndroidManifest.xml`](https://github.com/DharmikSonani/Dynamic-App-Icon/blob/main/android/app/src/main/AndroidManifest.xml)
+- Remove **intent-filter** from **activity**
+- Add **activity-alias** for each icon (Including default app icon)
 ```xml
  <activity-alias
     android:name="com.dynamicappicon.MainActivity<icon-name>"
@@ -454,55 +454,57 @@ npm run android
 #### **Generate Icon:** 
 Use a service such as https://www.appicon.co in order to generate the platform specific icon files.
 #### **Add Icons:**
-
+![Add iOS Icons](../../../guide-assets/Add-iOS-Icon.png)
 
 #### **Configure:**
 In XCode, in your app's **General settings**, under **App Icons and Launch Screen**, set **"App Icon"** to **Default** and **check** the **"Include all app icon assets"** checkbox below.
 
+![Configure iOS Icons](../../../guide-assets/Configue-iOS-Icon.png)
+
 ### 2. Modify Info.plist File
-#### **File:** [`ios/<YourAppName>/Info.plist`]()
+#### **File:** [`ios/<YourAppName>/Info.plist`](https://github.com/DharmikSonani/Dynamic-App-Icon/blob/main/ios/DynamicAppIcon/Info.plist)
 - Add **CFBundleIcons**
 ```
 <key>CFBundleIcons</key>
 <dict>
-	<key>UINewsstandIcon</key>
-	<dict>
-	    <key>CFBundleIconFiles</key>
-		<array>
-			<string>Default</string>
-		</array>
-		<key>UINewsstandBindingType</key>
-		<string>UINewsstandBindingTypeMagazine</string>
-		<key>UINewsstandBindingEdge</key>
-		<string>UINewsstandBindingEdgeLeft</string>
-	</dict>
-	<key>CFBundlePrimaryIcon</key>
-	<dict>
-		<key>CFBundleIconName</key>
-		<string></string>
-		<key>CFBundleIconFiles</key>
-		<array>
-			<string>Default</string>
-		</array>
-    	<key>UIPrerenderedIcon</key>
-		<false/>
-	</dict>
-	<key>CFBundleAlternateIcons</key>
-	<dict>
-		...
-	</dict>
+    <key>UINewsstandIcon</key>
+    <dict>
+        <key>CFBundleIconFiles</key>
+        <array>
+            <string>Default</string>
+        </array>
+        <key>UINewsstandBindingType</key>
+        <string>UINewsstandBindingTypeMagazine</string>
+        <key>UINewsstandBindingEdge</key>
+        <string>UINewsstandBindingEdgeLeft</string>
+    </dict>
+    <key>CFBundlePrimaryIcon</key>
+    <dict>
+        <key>CFBundleIconName</key>
+        <string></string>
+        <key>CFBundleIconFiles</key>
+        <array>
+            <string>Default</string>
+        </array>
+        <key>UIPrerenderedIcon</key>
+        <false/>
+    </dict>
+    <key>CFBundleAlternateIcons</key>
+    <dict>
+        ...
+    </dict>
 </dict>
 ```
-- Add <icon-key> for each icon (<icon-key> is case sensetive)
+- Add **icon-key** for each icon in **CFBundleAlternateIcons** (icon-key is case sensetive)
 ```
 <key><icon-key></key>
 <dict>
-	<key>CFBundleIconFiles</key>
-	<array>
-		<string><icon-key></string>
-	</array>
+    <key>CFBundleIconFiles</key>
+    <array>
+        <string><icon-key></string>
+    </array>
     <key>UIPrerenderedIcon</key>
-	<false/>
+    <false/>
 </dict>	
 ```
 - After Applying changes your Info.plist file look like
@@ -512,43 +514,43 @@ In XCode, in your app's **General settings**, under **App Icons and Launch Scree
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleIcons</key>
-	<dict>
-		<key>UINewsstandIcon</key>
-		<dict>
-			<key>CFBundleIconFiles</key>
-			<array>
-				<string>Default</string>
-			</array>
-			<key>UINewsstandBindingType</key>
-			<string>UINewsstandBindingTypeMagazine</string>
-			<key>UINewsstandBindingEdge</key>
-			<string>UINewsstandBindingEdgeLeft</string>
-		</dict>
-		<key>CFBundlePrimaryIcon</key>
-		<dict>
-			<key>CFBundleIconName</key>
-			<string></string>
-			<key>CFBundleIconFiles</key>
-			<array>
-				<string>Default</string>
-			</array>
-			<key>UIPrerenderedIcon</key>
-			<false/>
-		</dict>
-		<key>CFBundleAlternateIcons</key>
-		<dict>
-			<key>Alternate</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>Alternate</string>
-				</array>
-				<key>UIPrerenderedIcon</key>
-				<false/>
-			</dict>
-		</dict>
-	</dict>
+    <key>CFBundleIcons</key>
+    <dict>
+        <key>UINewsstandIcon</key>
+        <dict>
+            <key>CFBundleIconFiles</key>
+            <array>
+                <string>Default</string>
+            </array>
+            <key>UINewsstandBindingType</key>
+            <string>UINewsstandBindingTypeMagazine</string>
+            <key>UINewsstandBindingEdge</key>
+            <string>UINewsstandBindingEdgeLeft</string>
+        </dict>
+        <key>CFBundlePrimaryIcon</key>
+        <dict>
+            <key>CFBundleIconName</key>
+            <string></string>
+            <key>CFBundleIconFiles</key>
+            <array>
+                <string>Default</string>
+            </array>
+            <key>UIPrerenderedIcon</key>
+            <false/>
+        </dict>
+        <key>CFBundleAlternateIcons</key>
+        <dict>
+            <key>Alternate</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>Alternate</string>
+                </array>
+                <key>UIPrerenderedIcon</key>
+                <false/>
+            </dict>
+        </dict>
+    </dict>
 </dict>
 </plist>
 ```
@@ -564,7 +566,7 @@ npm run ios
 ```
 
 ## Usage - useAppIcons hook
-#### Code [`src/hooks/useAppIcons.js`]()
+#### Code [`src/hooks/useAppIcons.js`](https://github.com/DharmikSonani/Dynamic-App-Icon/blob/main/src/hooks/useAppIcons.js)
 
 ```javascript
 import { NativeModules, Platform } from 'react-native';
@@ -593,7 +595,7 @@ export const useAlternateIcon = () => handleIconChange('Alternate');
 export const useCurrentIcon = async () => Platform.OS === 'android' ? handleIconChange(await getAppIcon()) : {};
 ```
 
-#### Use in [`App.js`]()
+#### Use in `App.js`
 ```javascript
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
