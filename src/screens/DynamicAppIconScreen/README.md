@@ -367,7 +367,7 @@ npm run ios
 #### **Generate Icon:**
 Use a service such as https://www.appicon.co in order to generate the platform specific icon files.
 #### **Add Icon:**
-![Add Android Icons](../../../guide-assets/Add-Android-Icon.png)
+![Add Android Icons](https://github.com/DharmikSonani/Dynamic-App-Icon/blob/main/guide-assets/Add-Android-Icon.png)
 
 ### 2. Modify Menifest File
 #### **File:** [`android/app/src/main/AndroidManifest.xml`](https://github.com/DharmikSonani/Dynamic-App-Icon/blob/main/android/app/src/main/AndroidManifest.xml)
