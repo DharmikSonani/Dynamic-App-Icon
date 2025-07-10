@@ -367,7 +367,7 @@ npm run ios
 #### **Generate Icon:**
 Use a service such as https://www.appicon.co in order to generate the platform specific icon files.
 #### **Add Icon:**
-![Add Android Icons](./guide-assets/Add-Android-Icon.png)
+![Add Android Icons](https://github.com/DharmikSonani/Dynamic-App-Icon/blob/main/guide-assets/Add-Android-Icon.png)
 
 ### 2. Modify Menifest File
 #### **File:** [`android/app/src/main/AndroidManifest.xml`](https://github.com/DharmikSonani/Dynamic-App-Icon/blob/main/android/app/src/main/AndroidManifest.xml)
@@ -454,12 +454,12 @@ npm run android
 #### **Generate Icon:** 
 Use a service such as https://www.appicon.co in order to generate the platform specific icon files.
 #### **Add Icons:**
-![Add iOS Icons](./guide-assets/Add-iOS-Icon.png)
+![Add iOS Icons](https://github.com/DharmikSonani/Dynamic-App-Icon/blob/main/guide-assets/Add-iOS-Icon.png)
 
 #### **Configure:**
 In XCode, in your app's **General settings**, under **App Icons and Launch Screen**, set **"App Icon"** to **Default** and **check** the **"Include all app icon assets"** checkbox below.
 
-![Configure iOS Icons](./guide-assets/Configue-iOS-Icon.png)
+![Configure iOS Icons](https://github.com/DharmikSonani/Dynamic-App-Icon/blob/main/guide-assets/Configue-iOS-Icon.png)
 
 ### 2. Modify Info.plist File
 #### **File:** [`ios/<YourAppName>/Info.plist`](https://github.com/DharmikSonani/Dynamic-App-Icon/blob/main/ios/DynamicAppIcon/Info.plist)
@@ -467,44 +467,44 @@ In XCode, in your app's **General settings**, under **App Icons and Launch Scree
 ```
 <key>CFBundleIcons</key>
 <dict>
-	<key>UINewsstandIcon</key>
-	<dict>
-	    <key>CFBundleIconFiles</key>
-		<array>
-			<string>Default</string>
-		</array>
-		<key>UINewsstandBindingType</key>
-		<string>UINewsstandBindingTypeMagazine</string>
-		<key>UINewsstandBindingEdge</key>
-		<string>UINewsstandBindingEdgeLeft</string>
-	</dict>
-	<key>CFBundlePrimaryIcon</key>
-	<dict>
-		<key>CFBundleIconName</key>
-		<string></string>
-		<key>CFBundleIconFiles</key>
-		<array>
-			<string>Default</string>
-		</array>
-    	<key>UIPrerenderedIcon</key>
-		<false/>
-	</dict>
-	<key>CFBundleAlternateIcons</key>
-	<dict>
-		...
-	</dict>
+    <key>UINewsstandIcon</key>
+    <dict>
+        <key>CFBundleIconFiles</key>
+        <array>
+            <string>Default</string>
+        </array>
+        <key>UINewsstandBindingType</key>
+        <string>UINewsstandBindingTypeMagazine</string>
+        <key>UINewsstandBindingEdge</key>
+        <string>UINewsstandBindingEdgeLeft</string>
+    </dict>
+    <key>CFBundlePrimaryIcon</key>
+    <dict>
+        <key>CFBundleIconName</key>
+        <string></string>
+        <key>CFBundleIconFiles</key>
+        <array>
+            <string>Default</string>
+        </array>
+        <key>UIPrerenderedIcon</key>
+        <false/>
+    </dict>
+    <key>CFBundleAlternateIcons</key>
+    <dict>
+        ...
+    </dict>
 </dict>
 ```
 - Add **icon-key** for each icon in **CFBundleAlternateIcons** (icon-key is case sensetive)
 ```
 <key><icon-key></key>
 <dict>
-	<key>CFBundleIconFiles</key>
-	<array>
-		<string><icon-key></string>
-	</array>
+    <key>CFBundleIconFiles</key>
+    <array>
+        <string><icon-key></string>
+    </array>
     <key>UIPrerenderedIcon</key>
-	<false/>
+    <false/>
 </dict>	
 ```
 - After Applying changes your Info.plist file look like
@@ -514,43 +514,43 @@ In XCode, in your app's **General settings**, under **App Icons and Launch Scree
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleIcons</key>
-	<dict>
-		<key>UINewsstandIcon</key>
-		<dict>
-			<key>CFBundleIconFiles</key>
-			<array>
-				<string>Default</string>
-			</array>
-			<key>UINewsstandBindingType</key>
-			<string>UINewsstandBindingTypeMagazine</string>
-			<key>UINewsstandBindingEdge</key>
-			<string>UINewsstandBindingEdgeLeft</string>
-		</dict>
-		<key>CFBundlePrimaryIcon</key>
-		<dict>
-			<key>CFBundleIconName</key>
-			<string></string>
-			<key>CFBundleIconFiles</key>
-			<array>
-				<string>Default</string>
-			</array>
-			<key>UIPrerenderedIcon</key>
-			<false/>
-		</dict>
-		<key>CFBundleAlternateIcons</key>
-		<dict>
-			<key>Alternate</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>Alternate</string>
-				</array>
-				<key>UIPrerenderedIcon</key>
-				<false/>
-			</dict>
-		</dict>
-	</dict>
+    <key>CFBundleIcons</key>
+    <dict>
+        <key>UINewsstandIcon</key>
+        <dict>
+            <key>CFBundleIconFiles</key>
+            <array>
+                <string>Default</string>
+            </array>
+            <key>UINewsstandBindingType</key>
+            <string>UINewsstandBindingTypeMagazine</string>
+            <key>UINewsstandBindingEdge</key>
+            <string>UINewsstandBindingEdgeLeft</string>
+        </dict>
+        <key>CFBundlePrimaryIcon</key>
+        <dict>
+            <key>CFBundleIconName</key>
+            <string></string>
+            <key>CFBundleIconFiles</key>
+            <array>
+                <string>Default</string>
+            </array>
+            <key>UIPrerenderedIcon</key>
+            <false/>
+        </dict>
+        <key>CFBundleAlternateIcons</key>
+        <dict>
+            <key>Alternate</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>Alternate</string>
+                </array>
+                <key>UIPrerenderedIcon</key>
+                <false/>
+            </dict>
+        </dict>
+    </dict>
 </dict>
 </plist>
 ```
