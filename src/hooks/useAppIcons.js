@@ -17,3 +17,9 @@ const handleIconChange = async (icon) => {
 export const useDefaultIcon = () => handleIconChange('default');
 export const useIconB = () => handleIconChange('IconB');
 export const useIconC = () => handleIconChange('IconC');
+
+/*
+- Use "useCurrentIcon" hook only on Android in specific cases, such as Google authentication,
+- where the Android activity might be stopped or backgrounded unexpectedly.
+*/
+export const useCurrentIcon = async () => Platform.OS === 'android' ? handleIconChange(await getAppIcon()) : {};

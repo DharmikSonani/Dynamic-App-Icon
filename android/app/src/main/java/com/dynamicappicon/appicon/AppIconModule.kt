@@ -29,7 +29,7 @@ class AppIconModule(
     fun getAppIcon(promise: Promise) {
         val activity = currentActivity
         if (activity == null) {
-            promise.reject("ANDROID:ACTIVITY_NOT_FOUND")
+            promise.resolve("ANDROID:ACTIVITY_NOT_FOUND")
             return
         }
 
@@ -48,11 +48,10 @@ class AppIconModule(
     fun changeAppIcon(iconName: String?, promise: Promise) {
         val activity = currentActivity
         if (activity == null) {
-            promise.reject("ANDROID:ACTIVITY_NOT_FOUND")
+            promise.resolve("ANDROID:ACTIVITY_NOT_FOUND")
             return
         }
 
-        val pm = activity.packageManager
         val currentClass = activity.componentName.className
         val aliasSuffix = if (iconName.isNullOrEmpty() || iconName.equals("Default", true)) "Default" else iconName
         val newAlias = "$packageName.MainActivity$aliasSuffix"
@@ -60,7 +59,7 @@ class AppIconModule(
         if (currentClass == newAlias) {
             showIconChangeAlert(activity, newAlias);
             switchScheduled = false;
-            promise.reject("ANDROID:ICON_ALREADY_USED", "Already using this icon.")
+            promise.resolve("Already using this icon.")
             return
         }
 
