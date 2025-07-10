@@ -241,7 +241,7 @@ class AppIconPackage : ReactPackage {
 ### 4. Register the Package in `MainApplication.kt`
 #### **File:** [`android/app/src/main/java/com/<package-name>/MainApplication.kt`](https://github.com/DharmikSonani/Dynamic-App-Icon/blob/main/android/app/src/main/java/com/dynamicappicon/MainApplication.kt)
 
-Modify the `MainApplication.kt` file to include the `AudioDevicePackage`.
+Modify the `MainApplication.kt` file to include the `AppIconPackage`.
 
 ```kotlin
 package com.<package-name>
