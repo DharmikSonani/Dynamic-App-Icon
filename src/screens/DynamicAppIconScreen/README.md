@@ -454,12 +454,12 @@ npm run android
 #### **Generate Icon:** 
 Use a service such as https://www.appicon.co in order to generate the platform specific icon files.
 #### **Add Icons:**
-![Add iOS Icons](../../../guide-assets/Add-iOS-Icon.png)
+![Add iOS Icons](https://github.com/DharmikSonani/Dynamic-App-Icon/blob/main/guide-assets/Add-iOS-Icon.png)
 
 #### **Configure:**
 In XCode, in your app's **General settings**, under **App Icons and Launch Screen**, set **"App Icon"** to **Default** and **check** the **"Include all app icon assets"** checkbox below.
 
-![Configure iOS Icons](../../../guide-assets/Configue-iOS-Icon.png)
+![Configure iOS Icons](https://github.com/DharmikSonani/Dynamic-App-Icon/blob/main/guide-assets/Configue-iOS-Icon.png)
 
 ### 2. Modify Info.plist File
 #### **File:** [`ios/<YourAppName>/Info.plist`](https://github.com/DharmikSonani/Dynamic-App-Icon/blob/main/ios/DynamicAppIcon/Info.plist)
