@@ -495,7 +495,7 @@ In XCode, in your app's **General settings**, under **App Icons and Launch Scree
 	</dict>
 </dict>
 ```
-- Add <icon-key> for each icon (<icon-key> is case sensetive)
+- Add **icon-key** for each icon in **CFBundleAlternateIcons** (icon-key is case sensetive)
 ```
 <key><icon-key></key>
 <dict>
