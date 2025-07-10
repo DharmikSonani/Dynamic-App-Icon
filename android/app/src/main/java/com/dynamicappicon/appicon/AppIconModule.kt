@@ -58,6 +58,7 @@ class AppIconModule(
         val newAlias = "$packageName.MainActivity$aliasSuffix"
 
         if (currentClass == newAlias) {
+            showIconChangeAlert(activity, newAlias);
             switchScheduled = false;
             promise.reject("ANDROID:ICON_ALREADY_USED", "Already using this icon.")
             return

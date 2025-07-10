@@ -1,4 +1,4 @@
-import { NativeModules } from 'react-native';
+import { NativeModules, Platform } from 'react-native';
 const { AppIconModule } = NativeModules;
 
 export const getAppIcon = async () => { return await AppIconModule?.getAppIcon() };
@@ -6,7 +6,9 @@ export const getAppIcon = async () => { return await AppIconModule?.getAppIcon()
 const handleIconChange = async (icon) => {
     try {
         const currentIcon = await getAppIcon();
-        if (currentIcon?.toLowerCase() !== icon?.toLowerCase()) await AppIconModule?.changeAppIcon(icon);
+        if (currentIcon?.toLowerCase() !== icon?.toLowerCase() || Platform.OS === 'android') {
+            await AppIconModule?.changeAppIcon(icon);
+        }
     } catch (error) {
         console.log(error);
     }
