@@ -328,7 +328,7 @@ class AppIconModule: NSObject, RCTBridgeModule{
 ```
 
 ### 2. Create the Bridging Header
-#### **File:** [`iios/<YourApplicationName>-Bridging-Header.h`]()
+#### **File:** [`ios/<YourApplicationName>-Bridging-Header.h`]()
 ```objc
 #import "React/RCTBridgeModule.h"
 #import "React/RCTEventEmitter.h"
@@ -371,8 +371,8 @@ Use a service such as https://www.appicon.co in order to generate the platform s
 
 ### 2. Modify Menifest File
 #### **File:** [`android/app/src/main/AndroidManifest.xml`]()
-- Remove ***<intent-filter>...</intent-filter>*** from ***<activity>...</activity>***
-- Add ***<activity-alias>...</activity-alias>*** for each icon (Including default app icon)
+- Remove **<intent-filter>...</intent-filter>** from **<activity>...</activity>**
+- Add **<activity-alias>...</activity-alias>** for each icon (Including default app icon)
 ```xml
  <activity-alias
     android:name="com.dynamicappicon.MainActivity<icon-name>"
